@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Health Insurance Price Prediction</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="logo">HealthPredict</div>
+        <ul class="nav-links">
+            <li><a href="#hero">Home</a></li>
+            <li><a href="#quotes">Quotes</a></li>
+            <li><a href="#form-section">Prediction</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#footer">Contact</a></li>
+          </ul>          
+        <button class="nav-btn">Get Started</button>
+      </nav>
+      
+    <div class="hero" id="hero">
+        <img src="https://media.istockphoto.com/id/1397378186/photo/unrecognizable-female-doctor-holding-graphic-virtual-visualization-model-of-liver-organ-in.jpg?s=612x612&w=0&k=20&c=itoNzkhLMDYrd0yL53XuvqVxma8Zin83Bu6zsRHOV6A=" alt="Health Awareness">
+        <div class="hero-text">
+            <p id="heroQuote" class="fade show">
+                <span id="quote-text" class="quote">“Health is the real wealth.”</span>
+                <span id="quote-author" class="author">– Mahatma Gandhi</span>
+            </p>
+          </div>
+          
+    </div>
+          
+    <main>
+        <section class="quote-section" id="quotes">
+        
+            <div class="quote-cards">
+              <div class="quote-card">
+                <img src="https://media.istockphoto.com/id/1357014440/photo/happy-family-jogging-at-park.jpg?s=612x612&w=0&k=20&c=BbEWkBFOKZu7YmxMTU1AQNtx2wRGvIIAToB_PA6BKTs=" alt="Yoga">
+                <p>"Take care of your body. It's the only place you have to live." – Jim Rohn</p>
+              </div>
+              <div class="quote-card">
+                <img src="https://media.istockphoto.com/id/1468860049/photo/fitness-woman-eating-a-healthy-poke-bowl-in-the-kitchen-at-home.jpg?s=612x612&w=0&k=20&c=XDY46BP4RgFqq27GjLYbrAhIUnz3rkKXlu0axO-N39A=" alt="Doctor">
+                <p>"The greatest wealth is health." – Virgil</p>
+              </div>
+              <div class="quote-card">
+                <img src="https://media.istockphoto.com/id/1356562845/photo/happy-doctor-leading-a-team-of-healthcare-workers-at-the-hospital.jpg?s=612x612&w=0&k=20&c=IMAkynSYgxfvO0Mo8s0yOj8245nelXyt4Z0IrgEZnik=" alt="Meditation">
+                <p>"Health is a state of complete harmony of the body, mind and spirit." – B.K.S. Iyengar</p>
+              </div>
+              <div class="quote-card">
+                <img src="https://media.istockphoto.com/id/468806318/photo/woman-relaxing-yoga.jpg?s=612x612&w=0&k=20&c=Ssh2FoOCuntObdmhGyHoS6kteBC15SfJMmDjRCiw91c=" alt="Fitness">
+                <p>"A fit body, a calm mind, a house full of love. These things cannot be bought." – Naval Ravikant</p>
+              </div>
+              <div class="quote-card">
+                <img src="https://media.istockphoto.com/id/1500841938/photo/portrait-of-happy-indian-asian-senior-couple-holding-red-heart-balloon-at-park-outdoor.jpg?s=612x612&w=0&k=20&c=qNCmrl0W8RhJWGRTI9tRtyWfO5h9mzHRZqf_I7kRyH0=" alt="Healthy Food">
+                <p>"Let food be thy medicine and medicine be thy food." – Hippocrates</p>
+              </div>
+              <div class="quote-card">
+                <img src="https://media.istockphoto.com/id/1363588189/photo/healthy-lifestyle-on-ketogenic-diet-eating-clean-keto-food-good-health-dietary-in-heart-dish.jpg?s=612x612&w=0&k=20&c=RVW_a2Bq3eYeUWqkUbTUHkiQbGJaAMa9Q2fyljGymgY=" alt="Running">
+                <p>"It is health that is real wealth and not pieces of gold and silver." – Mahatma Gandhi</p>
+              </div>
+            </div>
+          </section>
+          
+          <main>
+            <div class="form-result-container" >
+              <!-- Form Section -->
+              <section class="form-section" id="form-section">
+                <div class="form-card">
+                  <h2>👤 Enter Your Details</h2>
+                  <form id="predictionForm">
+                    <div class="form-group">
+                      <label for="age">Age:</label>
+                      <input type="number" id="age" required placeholder="e.g. 25">
+                    </div>
+                    <div class="form-group">
+                      <label for="gender">Gender:</label>
+                      <select id="gender">
+                        <option value="male">Male ♂️</option>
+                        <option value="female">Female ♀️</option>
+                        <option value="other">Other ⚧️</option>
+                      </select>
+                    </div>
+                    <div class="form-group">
+                      <label for="height">Height (cm):</label>
+                      <input type="number" id="height" required placeholder="e.g. 170">
+                    </div>
+                    <div class="form-group">
+                      <label for="weight">Weight (kg):</label>
+                      <input type="number" id="weight" required placeholder="e.g. 65">
+                    </div>
+                    <div class="form-group">
+                      <label for="smoker">Smoker:</label>
+                      <select id="smoker">
+                        <option value="yes">Yes 🚬</option>
+                        <option value="no">No 🫁</option>
+                      </select>
+                    </div>
+                    <div class="button-container">
+                        <button type="submit">Predict Price</button>
+                    </div>
+                      
+                  </form>
+                </div>
+              </section>
+          
+              <!-- Result Section -->
+              <section class="result-section" style="display: none;">
+                <div class="result-card">
+                  <h2>💰 Predicted Insurance Price</h2>
+                  <p id="predictedPrice" class="price-text">$0</p>
+                  <canvas id="priceChart" height="200"></canvas>
+                  <div class="result-actions">
+                    <button id="downloadReport">📥 Download Report</button>
+                  </div>
+                </div>
+              </section>
+            </div>
+          </main>
+          
+          
+    </main>
+    <footer class="site-footer fade-in" id="footer">
+        <div class="footer-content">
+            <p>Made with ❤️ for Health Insurance Prediction</p>
+          <div class="footer-links">
+            <a href="#top">Home</a>
+            <a href="#form">Form</a>
+            <a href="#result">Result</a>
+            <a href="#about">About</a>
+          </div>
+      
+          <div class="social-icons">
+            <a href="#" target="_blank"><i class="fab fa-facebook"></i></a>
+            <a href="#" target="_blank"><i class="fab fa-twitter"></i></a>
+            <a href="#" target="_blank"><i class="fab fa-instagram"></i></a>
+            <a href="#" target="_blank"><i class="fab fa-linkedin"></i></a>
+          </div>
+      
+          <div class="newsletter">
+            <p>Subscribe for updates:</p>
+            <input type="email" placeholder="Enter your email">
+            <button>Subscribe</button>
+          </div>
+      
+          <p class="footer-quote">"Take care of your body. It's the only place you have to live." – Jim Rohn</p>
+          <p>&copy; 2025 HealthPredict. All rights reserved.</p>
+        </div>
+      </footer>
+      
+      
+            
+      
+      <script src="app.js"></script>
+
+</body>
+</html>
