@@ -36,8 +36,40 @@ function showNextQuote() {
 }
 setInterval(showNextQuote, 3000);
 
+
+
+//Hamburge logic 
+const hamburger = document.getElementById("hamburger-icon");
+const navLinks = document.querySelector(".nav-links");
+
+// Toggle the nav-links visibility on hamburger click
+hamburger.addEventListener("click", () => {
+  navLinks.classList.toggle("active");
+});
 document.addEventListener("DOMContentLoaded", function () {
   const form = document.getElementById("predictionForm");
+
+  const heightInput = document.getElementById("height");
+  const weightInput = document.getElementById("weight");
+  const bmiOutput = document.getElementById("bmi");
+
+  const generateBMI = () => {
+    const heightFeet = parseFloat(heightInput.value);
+    const weightKg = parseFloat(weightInput.value);
+
+    if (isNaN(heightFeet) || isNaN(weightKg) || heightFeet <= 0 || weightKg <= 0) {
+      bmiOutput.value = "";
+      return;
+    }
+  
+    const heightInMetre = heightFeet * 0.3048;
+    let bmi = weightKg / (heightInMetre * heightInMetre);
+    console.log(bmi, heightFeet,weightKg,"bmi")
+    bmiOutput.value = bmi.toFixed(2);
+  };
+
+  heightInput.addEventListener("input", generateBMI);
+  weightInput.addEventListener("input", generateBMI);
 
   form.addEventListener("submit", async function (event) {
     event.preventDefault(); // Prevent form default submission
@@ -46,9 +78,9 @@ document.addEventListener("DOMContentLoaded", function () {
     const gender = document.getElementById("gender").value;
     const region = document.getElementById("region").value;
     const children = document.getElementById("children").value;
-    const bmi = document.getElementById("bmi").value;
     const smoker = document.getElementById("smoker").value;
     const age = document.getElementById("age").value;
+    const bmi =  bmiOutput.value
 
     // Check required fields
     if (!gender || !region || !children || !bmi || !smoker || !age) {

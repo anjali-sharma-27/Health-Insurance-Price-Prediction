@@ -21,7 +21,15 @@
         <li><a href="#about">About</a></li>
         <li><a href="#footer">Contact</a></li>
       </ul>
-      <button class="nav-btn">Get Started</button>
+      <button class="nav-btn">
+        <a href="#form-section">Get Started</a>
+      </button>
+
+      <div class="hamburger" id="hamburger-icon">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
     </nav>
 
     <div class="hero" id="hero">
@@ -124,8 +132,34 @@
               </select>
             </div>
             <div class="form-group">
+              <label for="height">Height:</label>
+              <input
+                type="number"
+                id="height"
+                min="0"
+                placeholder="Enter your height(in ft.)"
+                required
+              />
+            </div>
+            <div class="form-group">
+              <label for="weight">Weight:</label>
+              <input
+                type="number"
+                id="weight"
+                min="0"
+                placeholder="Enter your weight"
+                required
+              />
+            </div>
+            <div class="form-group">
               <label for="bmi">BMI:</label>
-              <input type="number" step="0.001" id="bmi" />
+              <input
+                type="number"
+                step="0.001"
+                id="bmi"
+                readonly
+                placeholder="BMI value"
+              />
             </div>
 
             <div class="form-group">
@@ -157,15 +191,22 @@
               </select>
             </div>
 
+            <div class="result-section" style="display: none">
+              <h3 style="font-weight: bolder">
+                Predicted Price for you Health Insurance:
+                <span id="predictedPrice"></span>
+              </h3>
+            </div>
+
             <div class="button-container">
               <button type="submit">Predict Price</button>
             </div>
           </form>
         </div>
       </section>
-      <section class="result-section" style="display: none">
+      <!-- <section class="result-section" style="display: none">
         <h3>Predicted Price: <span id="predictedPrice"></span></h3>
-      </section>
+      </section> -->
     </main>
     <footer class="site-footer fade-in" id="footer">
       <div class="footer-content">
