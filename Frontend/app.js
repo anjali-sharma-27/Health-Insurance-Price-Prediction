@@ -10,6 +10,58 @@ document.querySelectorAll(".nav-links a").forEach((link) => {
   });
 });
 
+const modal = document.getElementById("authModal");
+const loginForm = document.getElementById("loginForm");
+const signupForm = document.getElementById("signupForm");
+const loginBtn = document.getElementById("loginBtn");
+const signupBtn = document.getElementById("signupBtn");
+
+function openAuthModal() {
+  modal.style.display = "block";
+  showLogin(); // default view
+}
+
+function closeAuthModal() {
+  modal.style.display = "none";
+}
+
+function showLogin() {
+  loginForm.classList.add("active");
+  signupForm.classList.remove("active");
+  loginBtn.classList.add("active");
+  signupBtn.classList.remove("active");
+}
+
+function showSignup() {
+  signupForm.classList.add("active");
+  loginForm.classList.remove("active");
+  signupBtn.classList.add("active");
+  loginBtn.classList.remove("active");
+}
+
+// Form submission handlers
+loginForm.addEventListener("submit", function (e) {
+  e.preventDefault();
+  const username = document.getElementById("loginUsername").value;
+  alert(`Logging in as ${username}`);
+  loginForm.reset();
+  closeAuthModal();
+});
+
+signupForm.addEventListener("submit", function (e) {
+  e.preventDefault();
+  const username = document.getElementById("signupUsername").value;
+  const email = document.getElementById("signupEmail").value;
+  alert(`Signing up as ${username} with email ${email}`);
+  signupForm.reset();
+  closeAuthModal();
+});
+
+// Close modal when clicking outside content
+window.addEventListener("click", function (e) {
+  if (e.target == modal) closeAuthModal();
+});
+
 // // ===================== ROTATING HERO QUOTES =====================
 const quotes = [
   { text: "Health is wealth.", author: "Unknown" },
