@@ -19,8 +19,12 @@
         <li><a href="#quotes">Quotes</a></li>
         <li><a href="#form-section">Prediction</a></li>
         <li><a href="#about">About</a></li>
+
         <li><a href="#footer">Contact</a></li>
       </ul>
+<<<<<<< HEAD
+      <button onclick="openAuthModal()" class="getstarted">Get Started</button>
+=======
       <button class="nav-btn">
         <a href="#form-section">Get Started</a>
       </button>
@@ -30,11 +34,59 @@
         <span></span>
         <span></span>
       </div>
+>>>>>>> b1b7102796b526625e35cda3d0417ca4e84e9107
     </nav>
 
-    <div class="hero" id="hero">
+    <!-- Modal -->
+    <div id="authModal" class="modal">
+      <div class="modal-content">
+        <span class="close" onclick="closeAuthModal()">&times;</span>
+
+        <!-- Toggle Buttons -->
+        <div class="toggle-buttons">
+          <button id="loginBtn" onclick="showLogin()">Login</button>
+          <button id="signupBtn" onclick="showSignup()">Signup</button>
+        </div>
+
+        <!-- Login Form -->
+        <form id="loginForm" class="auth-form">
+          <input
+            type="text"
+            id="loginUsername"
+            placeholder="Username"
+            required
+          />
+          <input
+            type="password"
+            id="loginPassword"
+            placeholder="Password"
+            required
+          />
+          <button type="submit">Login</button>
+        </form>
+
+        <!-- Signup Form -->
+        <form id="signupForm" class="auth-form">
+          <input
+            type="text"
+            id="signupUsername"
+            placeholder="Username"
+            required
+          />
+          <input type="email" id="signupEmail" placeholder="Email" required />
+          <input
+            type="password"
+            id="signupPassword"
+            placeholder="Password"
+            required
+          />
+          <button type="submit">Signup</button>
+        </form>
+      </div>
+    </div>
+    <div class="hero">
       <img
-        src="https://media.istockphoto.com/id/1397378186/photo/unrecognizable-female-doctor-holding-graphic-virtual-visualization-model-of-liver-organ-in.jpg?s=612x612&w=0&k=20&c=itoNzkhLMDYrd0yL53XuvqVxma8Zin83Bu6zsRHOV6A="
+        src="https://healthtechmagazine.net/sites/healthtechmagazine.net/files/styles/cdw_hero/public/articles/%5Bcdw_tech_site%3Afield_site_shortname%5D/201811/HT_virtual_Visits_Deloitte_GettyImages-927897070.jpg?itok=pGyYQnA3"
         alt="Health Awareness"
       />
       <div class="hero-text">
@@ -46,9 +98,9 @@
         </p>
       </div>
     </div>
-
     <main>
       <section class="quote-section" id="quotes">
+        <h1 class="quoteheading">Secure Your Health, Secure Your Future</h1>
         <div class="quote-cards">
           <div class="quote-card">
             <img
@@ -111,6 +163,7 @@
 
       <!-- Form Section -->
       <section class="form-section" id="form-section">
+        <h1 class="formtitle">Get an instant Insurance Cost</h1>
         <div class="form-card">
           <h2>👤 Enter Your Details</h2>
           <form id="predictionForm">
@@ -238,7 +291,9 @@
         <p>&copy; 2025 HealthPredict. All rights reserved.</p>
       </div>
     </footer>
+
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
     <script src="app.js"></script>
   </body>
 </html>
