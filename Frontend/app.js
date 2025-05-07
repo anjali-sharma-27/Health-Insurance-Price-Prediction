@@ -43,6 +43,7 @@ function showSignup() {
 loginForm.addEventListener("submit", function (e) {
   e.preventDefault();
   const username = document.getElementById("loginUsername").value;
+  const password = document.getElementById("loginPassword").value;
   alert(`Logging in as ${username}`);
   loginForm.reset();
   closeAuthModal();
@@ -52,6 +53,7 @@ signupForm.addEventListener("submit", function (e) {
   e.preventDefault();
   const username = document.getElementById("signupUsername").value;
   const email = document.getElementById("signupEmail").value;
+  const password = document.getElementById("signupPassword").value;
   alert(`Signing up as ${username} with email ${email}`);
   signupForm.reset();
   closeAuthModal();
