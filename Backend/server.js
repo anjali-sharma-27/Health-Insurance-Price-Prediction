@@ -1,15 +1,30 @@
-const express = require("express");
+import express from "express";
+import dotenv from "dotenv";
+
+import authRoutes from "./routes/auth.routes.js"
+import PredictRoutes from "./routes/predict.routes.js"
+import connectDB from "./db/index.js";
+
+dotenv.config();
+
 const app = express();
-const port = 5000;
+const port = process.env.PORT || 3000;
 
 app.use(express.json());
 
-// Route to handle prediction requests
-app.post("/predict", (req, res) => {
-  // Here, you'll handle the request to make predictions
-  // This can be done by calling your machine learning model (in Python)
+app.use("/api/auth", authRoutes);
+app.use("/api/predict", PredictRoutes)
+
+
+connectDB()
+.then(()=>{
+  app.listen(port, () => {
+    console.log(`Server running on http://localhost:${port}`);
+  });
+})
+.catch((error) => {
+  console.error("Mongoose connection error: ", error);
+  process.exit(1);
 });
 
-app.listen(port, () => {
-  console.log(`Server running on http://localhost:${port}`);
-});
+
