@@ -57,7 +57,6 @@ export const signup = async (req, res) => {
 };
 
 // Login
-
 export const login = async (req, res) => {
     const { username, password } = req.body;
 

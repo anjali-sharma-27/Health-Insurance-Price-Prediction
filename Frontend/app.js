@@ -40,23 +40,108 @@ function showSignup() {
 }
 
 // Form submission handlers
-loginForm.addEventListener("submit", function (e) {
+// loginForm.addEventListener("submit", function (e) {
+//   e.preventDefault();
+//   const username = document.getElementById("loginUsername").value;
+//   const password = document.getElementById("loginPassword").value;
+//   alert(`Logging in as ${username}`);
+//   loginForm.reset();
+//   closeAuthModal();
+// });
+
+loginForm.addEventListener("submit", async function (e) {
   e.preventDefault();
   const username = document.getElementById("loginUsername").value;
   const password = document.getElementById("loginPassword").value;
-  alert(`Logging in as ${username}`);
-  loginForm.reset();
-  closeAuthModal();
+
+  try {
+    const response = await fetch("http://localhost:5000/api/auth/login", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      credentials: "include", // needed to include cookies like jwtToken
+      body: JSON.stringify({ username, password }),
+    });
+
+    const data = await response.json();
+
+    console.log(data,"data")
+
+    if (!response.ok) {
+      alert(data.error || "Login failed");
+    } else {
+      alert(`Welcome, ${data.user.username}`);
+      loginForm.reset();
+      closeAuthModal();
+      window.location.href = "/Frontend/index.html";
+    }
+  } catch (err) {
+    console.error("Login request error:", err.message);
+    alert("Something went wrong");
+  }
 });
 
-signupForm.addEventListener("submit", function (e) {
+
+// signupForm.addEventListener("submit", function (e) {
+//   e.preventDefault();
+//   const username = document.getElementById("signupUsername").value;
+//   const email = document.getElementById("signupEmail").value;
+//   const password = document.getElementById("signupPassword").value;
+//   alert(`Signing up as ${username} with email ${email}`);
+//   signupForm.reset();
+//   closeAuthModal();
+// });
+
+signupForm.addEventListener("submit", async function (e) {
   e.preventDefault();
   const username = document.getElementById("signupUsername").value;
   const email = document.getElementById("signupEmail").value;
   const password = document.getElementById("signupPassword").value;
-  alert(`Signing up as ${username} with email ${email}`);
-  signupForm.reset();
-  closeAuthModal();
+
+  try {
+    const response = await fetch("http://localhost:5000/api/auth/signup", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      credentials: "include", // to receive jwt cookie
+      body: JSON.stringify({ username, email, password })
+    });
+
+    const data = await response.json();
+
+    if (!response.ok) {
+      alert(data.error || "Signup failed");
+    } else {
+      alert(`Welcome, ${data.user.username}`);
+      signupForm.reset();
+      closeAuthModal();
+    }
+  } catch (err) {
+    console.error("Signup request error:", err.message);
+    alert("Something went wrong");
+  }
+});
+
+document.getElementById("logoutBtn").addEventListener("click", async function () {
+  try {
+    const response = await fetch("http://localhost:5000/api/auth/logout", {
+      method: "POST",
+      credentials: "include"
+    });
+
+    const data = await response.json();
+
+    if (response.ok) {
+      alert(data.message || "Logged out successfully");
+    } else {
+      alert(data.error || "Logout failed");
+    }
+  } catch (err) {
+    console.error("Logout error:", err.message);
+    alert("Something went wrong during logout.");
+  }
 });
 
 // Close modal when clicking outside content
@@ -115,10 +200,9 @@ document.addEventListener("DOMContentLoaded", function () {
       bmiOutput.value = "";
       return;
     }
-  
+
     const heightInMetre = heightFeet * 0.3048;
     let bmi = weightKg / (heightInMetre * heightInMetre);
-    console.log(bmi, heightFeet,weightKg,"bmi")
     bmiOutput.value = bmi.toFixed(2);
   };
 
@@ -134,7 +218,9 @@ document.addEventListener("DOMContentLoaded", function () {
     const children = document.getElementById("children").value;
     const smoker = document.getElementById("smoker").value;
     const age = document.getElementById("age").value;
-    const bmi =  bmiOutput.value
+    const height = document.getElementById("height").value;
+    const weight = document.getElementById("weight").value;
+    const bmi = bmiOutput.value;
 
     // Check required fields
     if (!gender || !region || !children || !bmi || !smoker || !age) {
@@ -146,6 +232,8 @@ document.addEventListener("DOMContentLoaded", function () {
     const formData = {
       age: age,
       gender: gender,
+      height: height,
+      weight: weight,
       bmi: bmi,
       children: children,
       smoker: smoker,
@@ -153,7 +241,7 @@ document.addEventListener("DOMContentLoaded", function () {
     };
 
     try {
-      const response = await fetch("http://127.0.0.1:5000/", {
+      const response = await fetch("http://127.0.0.1:5001/", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -165,9 +253,11 @@ document.addEventListener("DOMContentLoaded", function () {
       console.log(data); // Debug
 
       if (data.predicted_price) {
+        const positivePrice = Math.abs(data.predicted_price);
+
         document.querySelector(".result-section").style.display = "block";
         document.getElementById("predictedPrice").innerText =
-          "$" + data.predicted_price.toFixed(2);
+          "$" + positivePrice.toFixed(2);
       } else {
         alert("Prediction failed, please try again.");
       }
